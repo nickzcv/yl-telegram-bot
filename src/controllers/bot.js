@@ -2,7 +2,6 @@ const axios = require('axios');
 const config = require('./../config/config.json');
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(config.TOKEN, { polling: true });
-bot.setWebHook(`${config.URL}/${config.TOKEN}`);
 
 exports.startBot = (request, response) => {
   try {
