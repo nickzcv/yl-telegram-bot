@@ -1,18 +1,7 @@
 const axios = require('axios');
 const config = require('./../config/config.json');
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot(config.TOKEN, {
-  filepath: false,
-  onlyFirstMatch: true,
-  webHook: {
-    // Port to which you should bind is assigned to $PORT variable
-    // See: https://devcenter.heroku.com/articles/dynos#local-environment-variables
-    port: config.PORT
-    // you do NOT need to set up certificates since Heroku provides
-    // the SSL certs already (https://<app-name>.herokuapp.com)
-    // Also no need to pass IP because on Heroku you need to bind to 0.0.0.0
-  }
-});
+const bot = new TelegramBot(config.TOKEN, { polling: true });
 bot.setWebHook(`${config.URL}/${config.TOKEN}`);
 
 exports.startBot = (request, response) => {
